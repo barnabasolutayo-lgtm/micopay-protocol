@@ -6,6 +6,7 @@ import {
   getCurrentUser,
   type CurrentUserProfile,
 } from "../services/api";
+import { resolveErrorMessage } from "../constants/errorMap";
 
 interface ProfileProps {
   token: string | null;
@@ -31,7 +32,7 @@ const Profile = ({ token, devicePublicKey, onBack, onDeleted, onNavigatePrivacy,
   useEffect(() => {
     if (!token) {
       setLoading(false);
-      setError("No hay una cuenta autenticada para mostrar.");
+      setError(resolveErrorMessage({ response: { status: 401 } }).message);
       return;
     }
 
@@ -93,7 +94,7 @@ const Profile = ({ token, devicePublicKey, onBack, onDeleted, onNavigatePrivacy,
         onDeleted();
       }, 800);
     } catch (err: any) {
-      setError(err?.response?.data?.message ?? "No se pudo eliminar tu cuenta");
+      setError(resolveErrorMessage(err).message);
     } finally {
       setDeleting(false);
     }

@@ -7,6 +7,7 @@ import {
   refundTradeRequest,
   TradeDetailResponse,
 } from '../services/api';
+import { errorMessages } from '../constants/errorMessages';
 
 type TradeDetailData = TradeDetailResponse['trade'] & {
   platform_fee_mxn?: number;
@@ -126,7 +127,7 @@ function PendingView({ trade, onCancel }: { trade: TradeDetailData; onCancel: ()
       </div>
       <h2 className="text-2xl font-bold text-on-surface mb-2">Esperando al vendedor</h2>
       <p className="text-on-surface-variant mb-6">
-        El vendedor aún no ha bloqueado los fondos. Tu operación está segura en escrow.
+        El vendedor aún no ha bloqueado los fondos. Tu operación está segura en garantía.
       </p>
 
       <div className="bg-surface-container-low rounded-xl p-4 w-full mb-6">
@@ -449,10 +450,9 @@ function NotFoundError() {
           search_off
         </span>
       </div>
-      <h2 className="text-2xl font-bold text-on-surface mb-2">Trade no encontrado</h2>
-      <p className="text-on-surface-variant mb-6">
-        La operación que buscas no existe o fue eliminada.
-      </p>
+      <h2 className="text-2xl font-bold text-on-surface mb-2">{errorMessages.generic.fallback.title}</h2>
+      <p className="text-on-surface-variant mb-2">La operación que buscas no existe o fue eliminada.</p>
+      <p className="text-sm text-on-surface-variant mb-6">{errorMessages.generic.fallback.action}</p>
 
       <Link
         to="/"
@@ -474,10 +474,9 @@ function ForbiddenError() {
           lock_person
         </span>
       </div>
-      <h2 className="text-2xl font-bold text-on-surface mb-2">Sin acceso</h2>
-      <p className="text-on-surface-variant mb-6">
-        No tienes permiso para ver esta operación. Solo los participantes pueden acceder.
-      </p>
+      <h2 className="text-2xl font-bold text-on-surface mb-2">{errorMessages.auth.unauthorized.title}</h2>
+      <p className="text-on-surface-variant mb-2">No tienes permiso para ver esta operación. Solo los participantes pueden acceder.</p>
+      <p className="text-sm text-on-surface-variant mb-6">{errorMessages.auth.unauthorized.action}</p>
 
       <Link
         to="/"
@@ -499,10 +498,9 @@ function NetworkError({ onRetry }: { onRetry: () => void }) {
           wifi_off
         </span>
       </div>
-      <h2 className="text-2xl font-bold text-on-surface mb-2">Error de conexión</h2>
-      <p className="text-on-surface-variant mb-6">
-        No se pudo conectar al servidor. Verifica tu conexión e intenta de nuevo.
-      </p>
+      <h2 className="text-2xl font-bold text-on-surface mb-2">{errorMessages.network.offline.title}</h2>
+      <p className="text-on-surface-variant mb-2">No se pudo conectar al servidor. Verifica tu conexión e intenta de nuevo.</p>
+      <p className="text-sm text-on-surface-variant mb-6">{errorMessages.network.offline.action}</p>
 
       <button
         onClick={onRetry}

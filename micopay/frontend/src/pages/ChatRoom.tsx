@@ -94,7 +94,7 @@ const ChatRoom = ({
                         <span className="material-symbols-outlined text-sm">check</span>
                     </div>
                     <div className="flex flex-col gap-1 min-w-0">
-                        <p className="text-sm font-semibold text-primary">✓ Oferta aceptada · Saldo bloqueado en escrow</p>
+                        <p className="text-sm font-semibold text-primary">✓ Oferta aceptada · Saldo bloqueado en garantía</p>
                         {lockTxHash ? (
                             <a
                                 href={`${STELLAR_EXPLORER}/${lockTxHash}`}
@@ -198,7 +198,7 @@ const ChatRoom = ({
                             className="flex items-center justify-center gap-3 w-full h-[46px] rounded-lg bg-primary text-white font-semibold hover:opacity-90 transition-opacity shadow-lg shadow-primary/20"
                         >
                             <span className="material-symbols-outlined">qr_code_2</span>
-                            <span className="font-body text-sm">Ver mi QR de intercambio</span>
+                            <span className="font-body text-sm">Ver mi QR de operación</span>
                         </button>
                     </div>
                 </div>
