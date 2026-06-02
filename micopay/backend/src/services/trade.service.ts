@@ -4,7 +4,7 @@ import pino from 'pino';
 import { generateTradeSecret, encryptSecret, decryptSecret } from './secret.service.js';
 import { createHash } from 'crypto';
 import type { FastifyRequest } from 'fastify';
-import { callLockOnChain, callReleaseOnChain, verifyLockOnChain, assertNotReplayed } from './stellar.service.js';
+import { callLockOnChain, callReleaseOnChain, callRefundOnChain, verifyLockOnChain, assertNotReplayed } from './stellar.service.js';
 import {
   NotFoundError,
   ForbiddenError,
@@ -666,6 +666,93 @@ export async function cancelTrade(
       toState: 'cancelled',
       actor: userId,
       metadata: { cancel_reason: reason ?? null },
+    }, error);
+    throw error;
+  }
+}
+
+/**
+ * Response shape for POST /trades/:id/refund.
+ */
+export interface RefundTradeResult {
+  status: 'refunded';
+  refund_tx_hash: string;
+}
+
+export async function refundTrade(
+  request: FastifyRequest,
+  tradeId: string,
+  userId: string,
+): Promise<RefundTradeResult> {
+  request.log.info({ trade_id: tradeId, user_id: userId, category: 'trade.lifecycle' }, '[trade] Refunding trade');
+  let fromState = UNKNOWN_STATE;
+
+  try {
+    const trade = await db.getOne('SELECT * FROM trades WHERE id = $1', [tradeId]);
+    if (!trade) throw new NotFoundError('Trade not found');
+    fromState = trade.status;
+
+    if (trade.buyer_id !== userId) {
+      throw new ForbiddenError('Solo el comprador puede solicitar un reembolso');
+    }
+
+    if (!trade.lock_tx_hash) {
+      throw new ConflictError('No hay fondos en cadena para reembolsar en este intercambio');
+    }
+
+    if (new Date(trade.expires_at) > new Date()) {
+      throw new TradeStateError(
+        'TRADE_NOT_EXPIRED',
+        'El intercambio aún no ha expirado. Espera a que venza el tiempo.',
+        `Trade ${tradeId} has not expired yet (expires at ${trade.expires_at})`
+      );
+    }
+
+    if (['completed', 'cancelled', 'refunded'].includes(trade.status)) {
+      throw new ConflictError(`No se puede reembolsar un intercambio en estado ${trade.status}`);
+    }
+
+    let refundTxHash: string;
+
+    if (!config.mockStellar) {
+      const secretHashBytes = Buffer.from(trade.secret_hash, 'hex');
+      const tradeIdBytes = createHash('sha256').update(secretHashBytes).digest();
+
+      const result = await callRefundOnChain({ request, tradeIdBytes });
+      refundTxHash = result.txHash;
+    } else {
+      refundTxHash = `mock_refund_${Date.now()}`;
+    }
+
+    await assertNotReplayed(refundTxHash, 'trade/refund', userId);
+
+    await db.execute(
+      `UPDATE trades
+       SET status = 'refunded',
+           release_tx_hash = $2,
+           completed_at = NOW()
+       WHERE id = $1`,
+      [tradeId, refundTxHash],
+    );
+
+    await insertTradeAuditEvent({
+      tradeId,
+      fromState,
+      toState: 'refunded',
+      actor: userId,
+      metadata: {
+        success: true,
+        refund_tx_hash: refundTxHash,
+      },
+    });
+
+    return { status: 'refunded', refund_tx_hash: refundTxHash };
+  } catch (error) {
+    await logTransitionFailure({
+      tradeId,
+      fromState,
+      toState: 'refunded',
+      actor: userId,
     }, error);
     throw error;
   }

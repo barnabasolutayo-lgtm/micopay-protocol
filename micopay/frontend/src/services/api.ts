@@ -180,6 +180,21 @@ export async function completeTrade(
   await http.post(`/trades/${tradeId}/complete`, {}, authHeaders(buyerToken));
 }
 
+export interface RefundTradeResponse {
+  status: 'refunded';
+  refund_tx_hash: string;
+}
+
+export async function refundTradeRequest(tradeId: string, token: string): Promise<RefundTradeResponse> {
+  try {
+    const res = await http.post(`/trades/${tradeId}/refund`, {}, authHeaders(token));
+    return res.data as RefundTradeResponse;
+  } catch (e: unknown) {
+    const { message } = extractApiErrorPayload(e);
+    throw new Error(message);
+  }
+}
+
 export interface TradeHistoryItem {
   id: string;
   status: string;
