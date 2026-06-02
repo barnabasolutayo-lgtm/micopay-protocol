@@ -49,13 +49,16 @@ import { readJSON, writeJSON, removeKey } from "./services/secureStorage";
 
 const USERS_STORAGE_KEY = "micopay_users";
 
-interface StoredUsers { buyer: UserData; seller: UserData }
+interface StoredUsers {
+  buyer: UserData;
+  seller: UserData;
+}
 
 interface AppProps {
   initialTradeId?: string | null;
 }
 
-type Flow = 'cashout' | 'deposit' | null;
+type Flow = "cashout" | "deposit" | null;
 
 interface AppCtx {
   buyerUser: UserData | null;
@@ -334,15 +337,15 @@ function SuccessRoute() {
 function ExploreRoute() {
   const navigate = useNavigate();
   const navMap: Record<string, string> = {
-    home: '/',
-    cashout: '/cashout',
-    deposit: '/deposit',
-    cetes: '/cetes',
-    blend: '/blend',
-    explore: '/explore',
-    profile: '/profile',
-    inbox: '/inbox',
-    history: '/history',
+    home: "/",
+    cashout: "/cashout",
+    deposit: "/deposit",
+    cetes: "/cetes",
+    blend: "/blend",
+    explore: "/explore",
+    profile: "/profile",
+    inbox: "/inbox",
+    history: "/history",
   };
   return (
       <Explore
@@ -397,34 +400,35 @@ function ProfileRoute() {
 
 function PrivacyRoute() {
   const navigate = useNavigate();
-  return <Privacy onBack={() => navigate('/profile')} />;
+  return <Privacy onBack={() => navigate("/profile")} />;
 }
 
 function TermsRoute() {
   const navigate = useNavigate();
-  return <Terms onBack={() => navigate('/profile')} />;
+  return <Terms onBack={() => navigate("/profile")} />;
 }
 
 // ── BottomNav route adapter ──────────────────────────────────────────────────
 
 const ROUTE_TO_PAGE: Record<string, string> = {
-  '/': 'home',
-  '/cashout': 'cashout',
-  '/inbox': 'inbox',
-  '/explore': 'explore',
-  '/profile': 'profile',
+  "/": "home",
+  "/cashout": "cashout",
+  "/inbox": "inbox",
+  "/explore": "explore",
+  "/profile": "profile",
 };
 
 const HIDE_BOTTOMNAV_ROUTES = new Set([
-  '/chat',
-  '/chat-deposit',
-  '/qr-reveal',
-  '/qr-deposit',
-  '/success',
-  '/cetes',
-  '/blend',
-  '/privacy',
-  '/terms',
+  "/chat",
+  "/chat-deposit",
+  "/qr-reveal",
+  "/qr-deposit",
+  "/success",
+  "/cetes",
+  "/blend",
+  "/merchant-settings",
+  "/privacy",
+  "/terms",
 ]);
 
 // Claim screens also hide the bottom nav (standalone deep-link UI).
@@ -439,11 +443,11 @@ function BottomNavAdapter() {
   if (HIDE_BOTTOMNAV_PREFIX.some((p) => location.pathname.startsWith(p))) return null;
 
   const navMap: Record<string, string> = {
-    home: '/',
-    cashout: '/cashout',
-    inbox: '/inbox',
-    explore: '/explore',
-    profile: '/profile',
+    home: "/",
+    cashout: "/cashout",
+    inbox: "/inbox",
+    explore: "/explore",
+    profile: "/profile",
   };
 
   return (
@@ -603,7 +607,11 @@ function App({ initialTradeId: _initialTradeId = null }: AppProps) {
     if (!buyerUser || !sellerUser) return;
     setTradeLoading(true);
     try {
-      const trade = await createTrade(sellerUser.id, activeAmount, buyerUser.token);
+      const trade = await createTrade(
+        sellerUser.id,
+        activeAmount,
+        buyerUser.token,
+      );
       const { lock_tx_hash } = await lockTrade(trade.id, sellerUser.token);
       await revealTrade(trade.id, sellerUser.token);
       setActiveTrade(trade);

@@ -1,10 +1,13 @@
 import {
   createMerchant,
-  getMerchantByUserId,
+  getMerchantByUserId as getMerchantByUserIdDb,
   getVerifiedMerchants,
+  updateMerchantAvailability as updateMerchantAvailabilityDb,
+  updateMerchantConfig as updateMerchantConfigDb,
   type CreateMerchantInput,
   type MerchantRow,
   type PublicMerchantRow,
+  type VerificationStatus,
 } from "../db/merchants.js";
 import { ConflictError, UnprocessableEntityError } from "../utils/errors.js";
 import { query } from "../db/schema.js";

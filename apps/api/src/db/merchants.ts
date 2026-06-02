@@ -1,4 +1,4 @@
-import { query, getOne, getMany } from "./schema.js";
+import { query, getOne, getMany, execute } from "./schema.js";
 
 export type VerificationStatus = "pending" | "verified" | "paused";
 
