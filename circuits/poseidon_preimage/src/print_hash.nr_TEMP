@@ -1,0 +1,6 @@
+#[test]
+fn print_hash_for_secret_12345() {
+    let secret: Field = 12345;
+    let h = std::hash::pedersen_hash([secret]);
+    dep::std::println(h);
+}
