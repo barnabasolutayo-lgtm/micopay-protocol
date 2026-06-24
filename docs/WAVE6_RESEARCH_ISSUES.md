@@ -42,6 +42,9 @@
 Understand whether converting digital balance (remittance / crypto / digital money) into
 **physical cash** is a real, recurring problem worth solving.
 
+**Validates (SDF angle):** user-side **demand** for cash-out on Stellar.
+→ Metric: % of respondents reporting cash-out as a recurring need, and their top friction.
+
 ### What to answer (copy this template into a comment and fill it in)
 ```
 - Country / general region:
@@ -70,6 +73,10 @@ Understand whether converting digital balance (remittance / crypto / digital mon
 ### Objective
 Understand whether putting **physical cash into a digital wallet / balance** solves a real
 pain — the reverse direction of V-1.
+
+**Validates (SDF angle):** the problem is **bidirectional** (cash-in too), widening the
+addressable use case beyond cash-out.
+→ Metric: % with a real cash-in use case, and their main trust barrier.
 
 ### What to answer (copy this template into a comment and fill it in)
 ```
@@ -103,6 +110,10 @@ pain — the reverse direction of V-1.
 ### Objective
 Validate whether a regular user or a small business would be willing to act as a
 **liquidity provider** (the human cash point).
+
+**Validates (SDF angle):** the **supply side** — that real people/businesses would provide
+liquidity, so the P2P network can actually function (not just demand with no one to serve it).
+→ Metric: % willing to be a provider, and the acceptable commission % range.
 
 ### What to answer (copy this template into a comment and fill it in)
 ```
@@ -139,6 +150,10 @@ Validate whether a regular user or a small business would be willing to act as a
 Validate whether a typical user understands **creating/importing a wallet** and the
 **responsibility of backing it up**, and what would make that step feel trustworthy.
 
+**Validates (SDF angle):** that Stellar's **non-custodial model is usable by mainstream
+users**, not only crypto-native people — a key adoption question for self-custody on Stellar.
+→ Metric: % who find the key-backup responsibility clear vs confusing, and what builds trust.
+
 ### How to participate
 Look at the onboarding/registration flow (or the description above) and answer below. If you
 run the app locally, do **not** share your real keys, addresses, or screenshots containing them.
@@ -171,6 +186,10 @@ run the app locally, do **not** share your real keys, addresses, or screenshots 
 ### Objective
 Validate whether a user would **trust** the core flow: pick a liquidity provider, see the
 commission, use a QR/receipt, and complete the operation.
+
+**Validates (SDF angle):** **trust / product-market fit** in the end-to-end experience —
+whether real users would actually adopt it, not just like the idea.
+→ Metric: top trust blockers and the top reason users would abandon the flow.
 
 ### How to participate
 Walk through the flow (choose provider → see fee → QR/receipt → complete) in the app or from
