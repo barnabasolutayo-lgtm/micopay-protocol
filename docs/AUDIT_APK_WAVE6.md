@@ -226,22 +226,24 @@ lo demás.
 - **B-5 (Dockerfile/guía de deploy)** → trabajo interno de maintainer/integrator. Roza Risk
   Controls de la guía ("no exponer credenciales de deploy en Waves tempranas"). No publicar como
   issue de contribuidor Drips; manejarlo internamente.
-- **§7 validación de mercado/producto (5 issues: V-1…V-5)** → SÍ se publican como issues de Drips:
-  usar Drips es justamente la ventaja (la comunidad hace el trabajo y se le reconoce). Para que no
-  sean "vague strategy work" cada uno lleva criterio de aceptación concreto (un entregable
-  estructurado que lo cierra). No usan PR ni merge. Labels: `research` (nuevo) · track `wave:docs` ·
-  `complexity: low` · `Stellar Wave`. Ver §7.
+- **§7 validación de mercado/producto (10 issues: V-1…V-10)** → publicados como issues de Drips en
+  el milestone *Wave 6: Market & User Validation* (#18). **Entrega por PR** (el asignado agrega su
+  sección en `VALIDATION_DRIPS.md`), experiencia propia (primera persona), un asignado por issue.
+  Labels: `research` · `wave:docs` · `complexity: low` · `Stellar Wave` (el label `research` ya está
+  creado y documentado en `DRIPS_TEAM_GUIDE.md`). Índice: [`WAVE6_RESEARCH_ISSUES.md`](./WAVE6_RESEARCH_ISSUES.md).
 
-| ID | Título corto | Tipo |
-|----|--------------|------|
-| V-1 | Market validation: contexto de cash-out | research |
-| V-2 | Market validation: contexto de cash-in / depósito | research |
-| V-3 | Market validation: perspectiva de proveedor de liquidez | research |
-| V-4 | Product validation: onboarding de wallet no-custodial | research |
-| V-5 | Product validation: confianza en flujo cash-in/cash-out | research |
-
-> ⚠️ **`research` es el único label NUEVO** que hay que crear en el repo (y documentar en
-> `DRIPS_TEAM_GUIDE.md`) antes de abrir V-1…V-5. El resto de labels ya existen.
+| ID | Tema | Issue |
+|----|------|-------|
+| V-1 | Cash-out | #131 |
+| V-2 | Cash-in / depósito | #132 |
+| V-3 | Proveedor de liquidez | #133 |
+| V-4 | Onboarding no-custodial | #134 |
+| V-5 | Confianza en el flujo | #135 |
+| V-6 | Remesas | #138 |
+| V-7 | Alternativas y switching | #139 |
+| V-8 | Comisión justa | #140 |
+| V-9 | Seguridad en persona | #141 |
+| V-10 | Recurrencia y descubrimiento | #142 |
 
 ### 6.3 Orden recomendado de publicar → asignar → mergear
 
@@ -266,10 +268,9 @@ lo demás.
 **Etapa 4 — Decisiones de producto / release:**
 10. **P2-2** y **P2-3** (requieren decisión de producto primero).
 
-**Etapa paralela — Research (V-1…V-5, sin merge, en cualquier momento):**
-- Las 5 de validación corren **en paralelo a todo**: no tienen dependencia de código ni de
-  build, no llevan PR. Solo requieren crear el label `research` primero (ver §6.2 y §7). Se pueden
-  abrir desde el día 1.
+**Etapa paralela — Research (V-1…V-10, en cualquier momento):**
+- Las 10 de validación corren **en paralelo a todo** y ya están publicadas (milestone #18). Cada
+  asignado entrega por **PR** (su sección en `VALIDATION_DRIPS.md`). El label `research` ya existe.
 
 ### 6.4 Política de asignación y merge (de `DRIPS_TEAM_GUIDE.md`)
 
@@ -287,75 +288,48 @@ lo demás.
 ## 7. Validación DRIPs inicial (mercado + producto)
 
 Además de corregir P0/P1, Wave 6 debe validar si MicoPay hace sentido para usuarios reales en
-su país/contexto. Para empezar, se crearán **5 issues iniciales** en DRIPs. Estos issues no
-requieren pull request ni merge: se aceptan como resueltos cuando el participante entrega una
-respuesta estructurada, útil y sin datos personales sensibles.
+su país/contexto. Hay **10 issues de validación publicados (V-1…V-10)** en el milestone
+*Wave 6: Market & User Validation* (#18). **Entrega por PR** (no comentario): el asignado agrega su
+sección `### V-X` en `VALIDATION_DRIPS.md`. Experiencia **propia** (primera persona); un asignado por issue.
 
-> 📄 **Texto completo listo para publicar:** ver [`WAVE6_RESEARCH_ISSUES.md`](./WAVE6_RESEARCH_ISSUES.md)
-> (cuerpo de cada issue, plantillas de respuesta y checklist de publicación). Los aprendizajes
-> agregados se vacían en [`VALIDATION_DRIPS.md`](./VALIDATION_DRIPS.md).
+> 📄 **Índice y reglas:** [`WAVE6_RESEARCH_ISSUES.md`](./WAVE6_RESEARCH_ISSUES.md). Síntesis
+> agregada para la SDF: [`VALIDATION_DRIPS.md`](./VALIDATION_DRIPS.md).
 
 **Principio privacy-first:** no pedir ni aceptar nombres reales, teléfonos, direcciones, wallets,
 llaves privadas, documentos, comprobantes, hashes de transacción ni información financiera.
 **No se piden montos de dinero** (ni siquiera en rangos): nada de ingresos, saldos ni tamaños de
 transacción. Las respuestas usan solo país/región general y relatos anonimizados.
 
-### Issues iniciales sugeridos
+### Los 10 issues (publicados, milestone #18)
 
-1. **Market validation: contexto de cash-out**
-   - Objetivo: entender si convertir saldo digital/remesa/cripto a efectivo es un problema real.
-   - Respuestas esperadas: país o región general, frecuencia aproximada, método actual, principal
-     fricción (comisión, tiempo, confianza, liquidez, seguridad). Sin montos.
-   - Aceptación: respuesta completa sin datos sensibles y etiquetada para análisis agregado.
+| ID | Tema | Issue | Qué valida (SDF) |
+|----|------|-------|------------------|
+| V-1 | Cash-out | #131 | Demanda (digital → efectivo) |
+| V-2 | Cash-in / depósito | #132 | Demanda bidireccional |
+| V-3 | Proveedor de liquidez | #133 | Oferta |
+| V-4 | Onboarding no-custodial | #134 | Stellar self-custody usable |
+| V-5 | Confianza en el flujo | #135 | Confianza / PMF |
+| V-6 | Remesas | #138 | Demanda de remesas cross-border |
+| V-7 | Alternativas y switching | #139 | Diferenciación |
+| V-8 | Comisión justa | #140 | Economía unitaria (% sin montos) |
+| V-9 | Seguridad en persona | #141 | De-risk P2P |
+| V-10 | Recurrencia y descubrimiento | #142 | Retención / PMF |
 
-2. **Market validation: contexto de cash-in / depósito**
-   - Objetivo: entender si ingresar efectivo a una wallet/saldo digital resuelve un dolor real.
-   - Respuestas esperadas: caso de uso, método actual, frecuencia, barreras de confianza y
-     disponibilidad de agentes/comercios. Sin montos.
-   - Aceptación: respuesta completa sin datos sensibles y etiquetada para análisis agregado.
+Las preguntas completas (en primera persona) viven en cada issue.
 
-3. **Market validation: perspectiva de proveedor de liquidez**
-   - Objetivo: validar si un usuario/comercio aceptaría operar como proveedor de liquidez (app
-     agnóstica de rol, D-2).
-   - Respuestas esperadas: tipo de comercio general, país/región, motivación, riesgos percibidos,
-     comisión esperada (en %) y condiciones para confiar. Sin montos.
-   - Aceptación: respuesta completa sin datos sensibles y etiquetada para análisis agregado.
+### Etiquetas y entrega
 
-4. **Product validation: onboarding de wallet no-custodial**
-   - Objetivo: validar si el usuario entiende crear/importar wallet y la responsabilidad de backup.
-   - Respuestas esperadas: claridad del flujo, dudas, miedos, qué texto o paso generaría confianza,
-     preferencia entre crear wallet e importar clave.
-   - Aceptación: feedback accionable sin compartir claves, direcciones personales ni capturas con
-     datos sensibles.
-
-5. **Product validation: confianza en flujo cash-in/cash-out**
-   - Objetivo: validar si el usuario confiaría en elegir un agente, ver comisión, usar QR/recibo y
-     completar la operación.
-   - Respuestas esperadas: puntos de confianza/desconfianza, información mínima que necesita ver,
-     señales de comercio verificado, soporte esperado y razones para abandonar el flujo.
-   - Aceptación: feedback accionable sin datos sensibles y con etiquetas de fricción/confianza.
-
-### Etiquetas — cómo publicarlos en Drips
-
-> Estos 5 **SÍ se publican como issues de Drips**: usar Drips es la ventaja (la comunidad hace el
-> trabajo y se le reconoce). No usan PR ni merge — se cierran cuando el participante entrega la
-> respuesta estructurada que pide el criterio de aceptación. Eso es lo que los saca de "vague
-> strategy work": cada issue tiene un **entregable concreto y verificable**, no una pregunta abierta.
->
-> ⚠️ Los labels propuestos originalmente (`validation:*`, `persona:*`, `country:*`, `pain:*`,
-> `amount:*`, `frequency:*`) **NO existen en el repo** y no se deben inventar issue por issue.
-> En su lugar, crear **un solo label nuevo de forma deliberada** y documentarlo en
-> `DRIPS_TEAM_GUIDE.md` **antes** de abrir los issues:
-> - **`research`** (nuevo) — marca issues de validación de mercado/usuario sin código.
->
-> Cada uno de los 5 issues lleva: `research` · track **`wave:docs`** · `complexity: low` ·
-> `Stellar Wave`. Cero labels que no existan en el repo.
+> Publicados como issues de Drips (la comunidad hace el trabajo y se le reconoce). **Entrega por
+> PR**, no comentario: el bot de Drips rastrea PRs, lo que deja al contribuidor aplicar a más
+> issues mientras se revisa el suyo. El label **`research`** ya está creado y documentado en
+> `DRIPS_TEAM_GUIDE.md`. Cada issue lleva: `research` · `wave:docs` · `complexity: low` ·
+> `Stellar Wave`.
 
 ### Cierre y síntesis
 
-Cada issue individual se puede cerrar cuando la respuesta esté registrada y etiquetada. Los
-aprendizajes se deben resumir de forma agregada (por ejemplo en `docs/VALIDATION_DRIPS.md`) sin
-copiar datos personales ni detalles que identifiquen a participantes.
+Cada issue se cierra al mergear el PR de su asignado (primera persona, sin datos sensibles). Los
+aprendizajes se resumen de forma agregada y anónima en `docs/VALIDATION_DRIPS.md`, sin copiar
+datos personales ni detalles que identifiquen a participantes.
 
 ---
 

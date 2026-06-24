@@ -1,11 +1,11 @@
 # Wave 6 — Validation results & SDF presentation prep
 
-> **Purpose:** turn the answers from the research issues (V-1…V-5) into an aggregate,
+> **Purpose:** turn the answers from the 10 research issues (V-1…V-10) into an aggregate,
 > anonymized synthesis we can present to the **Stellar Development Foundation (SDF)** as
 > evidence of real-world demand, supply, usability, and trust for a Stellar-based
 > cash-in/cash-out network in emerging markets.
 >
-> Full issue text: [`WAVE6_RESEARCH_ISSUES.md`](./WAVE6_RESEARCH_ISSUES.md) ·
+> Overview of the issues: [`WAVE6_RESEARCH_ISSUES.md`](./WAVE6_RESEARCH_ISSUES.md) ·
 > Wave 6 plan: [`AUDIT_APK_WAVE6.md`](./AUDIT_APK_WAVE6.md).
 >
 > ⚠️ **Never copy personal data here.** Only patterns and counts. No amounts of money, no
@@ -13,20 +13,30 @@
 
 ---
 
+## How responses land here
+
+Each research issue (V-1…V-10) has **one assignee**. That person shares **their own
+first-person experience** (not a survey of other people) by opening a **PR that adds their
+own `### V-X` section below**. One section per issue → no merge conflicts. The maintainer
+reviews each PR for privacy before merging.
+
+---
+
 ## The story we're proving for the SDF
 
-A funding/grant case for MicoPay on Stellar rests on four claims. The five research issues
-each supply evidence for one of them:
+A funding/grant case for MicoPay on Stellar rests on a few claims. The research issues each
+supply evidence for one of them:
 
 | Claim | Backed by | One-line thesis |
 |---|---|---|
-| **1. Demand exists** | V-1 (cash-out) + V-2 (cash-in) | People have a real, recurring pain converting digital ↔ cash |
-| **2. Supply exists** | V-3 (liquidity providers) | Real people/businesses would provide the cash for a commission |
-| **3. Stellar is usable** | V-4 (non-custodial onboarding) | Mainstream users can handle a self-custodial Stellar wallet |
-| **4. Trust / PMF** | V-5 (flow trust) | Users would actually adopt and complete the flow |
+| **1. Demand exists** | V-1 (cash-out), V-2 (cash-in), V-6 (remittances) | A real, recurring pain converting digital ↔ cash |
+| **2. Supply exists** | V-3 (liquidity providers) | Real people/businesses would provide cash for a commission |
+| **3. It can win** | V-7 (alternatives), V-8 (fair fee) | Better than current options, at a fee users accept |
+| **4. Stellar is usable** | V-4 (non-custodial onboarding) | Mainstream users can handle a self-custodial wallet |
+| **5. Trust / PMF** | V-5 (flow trust), V-9 (safety), V-10 (repeat use) | Users would adopt, feel safe, and come back |
 
-> Put together: **demand + supply + usable tech + trust = a credible case that a Stellar P2P
-> cash network serves the financially underserved.**
+> Put together: **demand + supply + a winning, affordable, usable, trusted experience = a
+> credible case that a Stellar P2P cash network serves the financially underserved.**
 
 ---
 
@@ -50,31 +60,31 @@ Fill these in as answers arrive. Keep counts and percentages only.
 
 | Metric | From | Target signal |
 |---|---|---|
-| % reporting cash-out as a recurring need | V-1 | demand |
-| Top cash-out friction (ranked) | V-1 | what to fix first |
-| % with a real cash-in use case | V-2 | bidirectional demand |
-| Main cash-in trust barrier (ranked) | V-2 | trust design |
-| % willing to be a liquidity provider | V-3 | supply |
-| Acceptable commission range (in %) | V-3 | unit economics |
+| % reporting cash-out as a recurring need · top friction | V-1 | demand |
+| % with a real cash-in use case · main trust barrier | V-2 | bidirectional demand |
+| % willing to provide liquidity · acceptable commission (%) | V-3 | supply / unit economics |
 | % who find non-custodial backup clear (vs confusing) | V-4 | onboarding viability |
-| Top trust blocker in the flow | V-5 | PMF / UX priority |
-| Top reason to abandon the flow | V-5 | drop-off risk |
-| Regions represented (count by region) | all | geographic spread |
-| Total respondents (N) | all | sample size |
+| Top trust blocker · top reason to abandon | V-5 | PMF / drop-off risk |
+| % who receive remittances · would same-day local cash help | V-6 | remittance demand |
+| What they use today · top switch trigger · dealbreaker | V-7 | differentiation |
+| Fair commission % (distribution) · "too high" threshold | V-8 | unit economics |
+| Comfort meeting a stranger · top safety fear · shops vs individuals | V-9 | safety / de-risking |
+| Discovery method · repeat-use (yes/maybe/no) · recommend driver | V-10 | retention / PMF |
+| Regions represented (count by region) · total respondents (N) | all | spread / sample size |
 
 ---
 
 ## Methodology note (state this honestly in the deck)
 
+- **First-person:** each entry is **one contributor's own experience**, not a survey of others.
 - **Convenience sample**, self-selected via the Drips program — **directional/qualitative
-  signal, not a representative study.** Report it as such; do not present as statistically
-  rigorous.
+  signal, not a representative study.** Report it as such; do not present as statistically rigorous.
 - Anonymized and privacy-first: **no personal data and no money amounts collected.**
 - Sample size is small; report `N` plainly and let the patterns speak.
 
 ---
 
-## Aggregate findings (fill as answers come in)
+## Aggregate findings (one `### V-X` section per contributor PR)
 
 ### V-1 · Cash-out context
 _(no responses yet)_
@@ -91,7 +101,21 @@ _(no responses yet)_
 ### V-5 · Trust in the cash-in/cash-out flow
 _(no responses yet)_
 
+### V-6 · Remittances cash-out context
+_(no responses yet)_
+
+### V-7 · Current alternatives & switching
+_(no responses yet)_
+
+### V-8 · Fair commission / fee tolerance
+_(no responses yet)_
+
+### V-9 · Safety meeting in person
+_(no responses yet)_
+
 ### V-10 · Product validation: repeat use & provider discovery
+> Note: submitted in the earlier multi-respondent format (kept as-is). Newer entries are first-person.
+
 Small anonymized sample (N=4; self + 3 peers, convenience sample across Mexico and other Latin American regions):
 
 - Respondent A — Mexico City, Mexico
@@ -128,7 +152,8 @@ Aggregate signal:
 
 ## How findings feed Wave 6 product work
 
-- Cash-out vs cash-in demand → which direction to prioritize first.
-- Trust signals a provider must show → P1-2 (map), P0-3 (real balance), receipts.
+- Cash-out vs cash-in vs remittance demand → which direction to prioritize first.
+- Trust + safety signals a provider must show → P1-2 (map), P0-3 (real balance), receipts.
 - Clarity of wallet backup → how mandatory to make it at sign-up (P0-5 / open question 3).
-- Minimum info before committing → Stage 2 UI work.
+- Fair fee range → pricing/economics decisions.
+- Discovery + minimum info before committing → Stage 2 UI work.
